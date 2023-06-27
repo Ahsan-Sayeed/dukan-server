@@ -2,8 +2,9 @@ const TodoTable = require('../model/data.model');
 
 exports.getData = async(req,res) =>{
   try{
-    const TodoFile = await TodoTable.find();
-    res.status(200).send(TodoFile);
+    // const TodoFile = await TodoTable.find();
+    // res.status(200).send(TodoFile);
+    res.status(200).send('HEllo worLd');
   }
   catch(err){
     console.log(err)
