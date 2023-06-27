@@ -12,7 +12,7 @@ exports.getUser = async(req,res) =>{
   }
 exports.getUserBy = async(req,res) =>{
     try{
-      const result = await Users.find({UID:req.params.uid});
+      const result = await Users.findOne({'UID':req.params.uid});
       res.status(200).send(result);
       console.log(result);
     }
