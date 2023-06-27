@@ -4,6 +4,17 @@ exports.getUser = async(req,res) =>{
     try{
       const result = await Users.find({});
       res.status(200).send(result);
+      console.log(result);
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+exports.getUserBy = async(req,res) =>{
+    try{
+      const result = await Users.find({UID:req.params.uid});
+      res.status(200).send(result);
+      console.log(result);
     }
     catch(err){
       console.log(err)
