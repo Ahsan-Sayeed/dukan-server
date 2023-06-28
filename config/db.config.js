@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://dukan:2LJzIKg8XFisnKf5@cluster0.plkdc5k.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://dukan:eiDMBW66SZsHZRSD@cluster0.48fmuml.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>{
     console.log('database connected successfully');
 })
