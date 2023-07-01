@@ -15,7 +15,7 @@ exports.postSprShData = async (req, res) => {
 
 exports.getSprShData = async (req, res) => {
     try {
-        const SprShTable = await Spreadsheet.find({});
+        const SprShTable = await Spreadsheet.find({uid:req.query.uid});
         const analytics = await analyticsModel.find({});
         // const newData = SprShTable.map((v,i)=>({...{...v}._doc,productName:"sdf"}));
         // const newData2 = SprShTable.map((v)=>analytics.find(data=>data._id.toString() === v.productId.toString()).productName)

@@ -14,7 +14,7 @@ exports.postAnalyticsData = async (req, res) => {
 
 exports.getAnalyticsData = async (req, res) => {
     try {
-        const AnalyticsTable = await Analytics.find({});
+        const AnalyticsTable = await Analytics.find({}).collation({locale: "en"}).sort({productName:1});
         res.status(200).send(AnalyticsTable);
     }
     catch (err) {

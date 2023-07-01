@@ -4,10 +4,9 @@ const Spreadsheet = require('../model/spreadsheet.model');
 
 exports.postHistory = async (req, res) => {
     try {
-        const HistoryTable = new History(req.body);
+        const HistoryTable = new History({...req.body,time:Date.now()});
         const result = await HistoryTable.save();
         res.status(200).json(result);
-        // console.log(result);
     }
     catch (err) {
         console.log(err);
@@ -16,9 +15,16 @@ exports.postHistory = async (req, res) => {
 
 exports.getHistory = async (req, res) => {
     try {
-        const history = await History.find({});
-        // const analytics = await analyticsModel.find({});
-        // const newData = History.map((v)=>({...{...v}._doc,productName:analytics.find(data=>data?._id?.toString() === v?.productId?.toString())?.productName,unit:analytics.find(data=>data?._id?.toString() === v?.productId?.toString())?.unit}))
+        const data = req.query.data;
+        // const history = await History.find({$text:{$search:''}});
+        const history = await History.find({
+            $or: [
+                { customerName: { $regex: data, '$options': 'i' } },
+                { phone: { $regex: data } },
+                { address: { $regex: data, '$options': 'i' } },
+                { date: { $regex: data, '$options': 'i' } }
+            ]  
+        }).sort({time:-1});
         res.status(200).send(history);
     }
     catch (err) {
@@ -26,23 +32,12 @@ exports.getHistory = async (req, res) => {
     }
 }
 
-exports.deleteHistory = async (req, res) => {
-    try {
-        const result = await Spreadsheet.deleteMany({});
-        // console.log(result)
-        res.status(200).json(result);
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
-exports.deleteHistory2 = async (req, res) => {
-    try {
-        const result = await History.deleteMany({});
-        // console.log(result)
-        res.status(200).json(result);
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
+// exports.deleteHistory = async (req, res) => {
+//     try {
+//         const result = await Spreadsheet.deleteMany({});
+//         res.status(200).json(result);
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }

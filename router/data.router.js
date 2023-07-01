@@ -2,7 +2,7 @@ const express = require('express');
 const { getData, postData, putData, deleteData } = require('../controller/data.controller');
 const { postAnalyticsData, getAnalyticsData, deleteAnalyticsData } = require('../controller/analytics.controller');
 const { postSprShData, getSprShData, deleteSprShData } = require('../controller/spreadsheet.controller');
-const { postHistory, getHistory, deleteHistory, deleteHistory2 } = require('../controller/history.controller');
+const { postHistory, getHistory } = require('../controller/history.controller');
 const { postUser, getUser, getUserBy } = require('../controller/users.controller');
 const router = express.Router();
 
@@ -27,8 +27,6 @@ router.delete('/spreadsheet/:id',deleteSprShData);
 //History
 router.post('/history',postHistory);
 router.get('/history',getHistory);
-router.delete('/history',deleteHistory);
-// router.delete('/history/v1',deleteHistory2);
 
 //user controller
 router.post('/users',postUser);

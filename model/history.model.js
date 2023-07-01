@@ -11,13 +11,15 @@ const HistorySchema = mongoose.Schema({
     products: [{
         productName: String,
         unit: String,
-        perUnitPrice: String,
-        availableStock: String
+        quantity: Number,
+        totalPrice: Number,
+        productId: String
     }],
     sellerEmail: String,
     sellerName: String,
     sellerUID: String,
-    totalPrice: Number
+    totalPrice: Number,
+    time: Number
 });
-
+// HistorySchema.index({phone:"text",customerName:"text",address:'text'});
 module.exports = mongoose.model('History', HistorySchema);
