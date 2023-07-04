@@ -31,9 +31,20 @@ exports.getSprShData = async (req, res) => {
 exports.deleteSprShData = async (req, res) => {
     try {
         const result = await Spreadsheet.deleteOne({ _id: req.params.id });
+        console.log(result);
         res.status(200).json(result);
     }
     catch (err) {
+        console.log(err);
+    }
+}
+
+exports.deleteAllData  = async (req,res) =>{
+    try{
+        const result = await Spreadsheet.deleteMany({});
+        res.status(200).json(result);
+    }
+    catch(err){
         console.log(err);
     }
 }
