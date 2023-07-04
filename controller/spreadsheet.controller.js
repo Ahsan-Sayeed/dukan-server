@@ -7,6 +7,7 @@ exports.postSprShData = async (req, res) => {
         const result = await SprShTable.save();
         res.status(200).json(result);
         // console.log(result);
+        //
     }
     catch (err) {
         console.log(err);
