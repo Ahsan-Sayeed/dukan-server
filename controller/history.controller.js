@@ -22,7 +22,8 @@ exports.getHistory = async (req, res) => {
                 { customerName: { $regex: data, '$options': 'i' } },
                 { phone: { $regex: data } },
                 { address: { $regex: data, '$options': 'i' } },
-                { date: { $regex: data, '$options': 'i' } }
+                { date: { $regex: data, '$options': 'i' } },
+                { courierData: { $regex: data, '$options': 'i' } }
             ]  
         }).sort({time:-1});
         res.status(200).send(history);

@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-    productId: String,
-    quantity: Number,
-    totalPrice: Number,
+    productName: String,
+    qu: [{
+        unit: String,
+        qty: Number,
+        price: Number
+    }],
     uid: String
 });
 
-module.exports = mongoose.model('Spreadsheet',schema);
+module.exports = mongoose.model('Spreadsheet', schema);

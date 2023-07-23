@@ -2,24 +2,29 @@ const { default: mongoose } = require("mongoose");
 
 
 const HistorySchema = mongoose.Schema({
-    address: String,
-    courier: Boolean,
-    customerName: String,
-    date: String,
-    due: Number,
-    phone: String,
     products: [{
         productName: String,
-        unit: String,
-        quantity: Number,
-        totalPrice: Number,
-        productId: String
+        qu: [{
+            unit: String,
+            qty: Number,
+            price: Number
+        }],
+        uid: String,
+        _id: String
     }],
-    sellerEmail: String,
-    sellerName: String,
-    sellerUID: String,
+    date: String,
+    customerName: String,
+    phone: String,
+    address: String,
     totalPrice: Number,
-    time: Number
+    due: Number,
+    courier: Boolean,
+    courierData: String,
+    sellerUID: String,
+    sellerName: String,
+    sellerEmail: String,
+    time: Number,
+
 });
 // HistorySchema.index({phone:"text",customerName:"text",address:'text'});
 module.exports = mongoose.model('History', HistorySchema);
