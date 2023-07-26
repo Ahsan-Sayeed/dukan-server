@@ -2,7 +2,7 @@ const express = require('express');
 const { getData, postData, putData, deleteData } = require('../controller/data.controller');
 const { postAnalyticsData, getAnalyticsData, deleteAnalyticsData, postCourierData, getCourierData, deleteCourierData } = require('../controller/analytics.controller');
 const { postSprShData, getSprShData, deleteSprShData, deleteAllData } = require('../controller/spreadsheet.controller');
-const { postHistory, getHistory } = require('../controller/history.controller');
+const { postHistory, getHistory, getSoldHistory, getAvailableHistory } = require('../controller/history.controller');
 const { postUser, getUser, getUserBy } = require('../controller/users.controller');
 const { postNewRecord, getAllRecord, stockDetails, updateStockDetails, deleteStockDetails, updateRecord, deleteRecord, updateSellPrice } = require('../controller/stock.controller');
 const router = express.Router();
@@ -29,6 +29,8 @@ router.delete('/spreadsheet',deleteAllData);
 //History
 router.post('/history',postHistory);
 router.get('/history',getHistory);
+router.get('/history/sold',getSoldHistory);
+router.get('/history/available',getAvailableHistory);
 
 //user controller
 router.post('/users',postUser);
