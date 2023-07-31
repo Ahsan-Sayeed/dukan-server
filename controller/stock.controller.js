@@ -24,13 +24,13 @@ exports.getAllRecord = async (req, res) => {
 exports.updateRecord = async (req, res) => {
     try {
         const units = req.body.data.map((v, i) => v.unit);
-
+        console.log(req.body)
         const result = await stockModel.updateOne(
             { _id: req.params.id },
             {
                 name: req.body.productName,
                 unit: units,
-                $addToSet: { sold: req.body.data }
+                sold: req.body.data
             }
         );
         res.status(200).json(result);
