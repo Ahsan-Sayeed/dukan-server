@@ -21,16 +21,23 @@ exports.getAllRecord = async (req, res) => {
         console.log(err);
     }
 }
+
 exports.updateRecord = async (req, res) => {
     try {
         const units = req.body.data.map((v, i) => v.unit);
-        console.log(req.body)
+        const restoreData = await stockModel.find({_id: req.params.id},{'sold':1,'_id':0});
+
         const result = await stockModel.updateOne(
             { _id: req.params.id },
             {
                 name: req.body.productName,
-                unit: units,
-                sold: req.body.data
+                unit: [...new Set(units)],
+                sold: [...new Map(req.body.data.map(obj => [JSON.stringify(obj), obj])).values()].map((vx,ix)=>({
+                    ...vx,
+                    singlePrice:restoreData[0].sold.map((va,ia)=>va.unit).find((vc,ic)=>vc===vx.unit)===undefined?
+                    0:
+                    restoreData[0].sold.find((v,i)=>v.unit===vx.unit).singlePrice
+                }))
             }
         );
         res.status(200).json(result);
