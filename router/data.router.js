@@ -49,8 +49,11 @@ router.delete('/deletetockdetails/:id/:item',deleteStockDetails)
 
 //analysis
 router.put('/updatesellprice/:idp/:idc',updateSellPrice);
-router.post('/courier',postCourierData)
-router.get('/courier',getCourierData)
-router.delete('/courier/:id',deleteCourierData)
+router.post('/courier',postCourierData);
+router.get('/courier',getCourierData);
+router.delete('/courier/:id',deleteCourierData);
+
+//userpanel
+
 
 module.exports = router;
